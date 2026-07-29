@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "962009158959",
+    "project_id": "yukbozoruz",
+    "storage_bucket": "yukbozoruz.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962009158959:android:dbeea89877d10f3a617dda",
+        "android_client_info": {
+          "package_name": "uz.yukbozor.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe9bK-PAkCGNFxX4NE2F-8yxUsIp8rJW4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

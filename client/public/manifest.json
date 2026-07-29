@@ -1,0 +1,51 @@
+{
+  "name": "Yukbozor.uz - Yuk Tashish Platformasi",
+  "short_name": "Yukbozor",
+  "description": "O'zbekistondagi yuk tashish xizmatlari uchun raqamli bozor",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "uz",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["business", "logistics", "transportation"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Заказы / Buyurtmalar",
+      "url": "/",
+      "description": "Посмотреть заказы"
+    },
+    {
+      "name": "Создать заказ",
+      "url": "/customer/orders",
+      "description": "Создать новый заказ"
+    }
+  ]
+}

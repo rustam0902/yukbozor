@@ -1,0 +1,20 @@
+services:
+  app:
+    build: .
+    container_name: yukbozor-app
+    restart: always
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./server/templates:/app/server/templates:ro
+      - ./server/static:/app/server/static:ro
+    networks:
+      - yukbozor-net
+
+networks:
+  yukbozor-net:
+    driver: bridge

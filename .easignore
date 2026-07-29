@@ -1,0 +1,12 @@
+node_modules
+mobile/node_modules
+.git
+client
+server
+uploads
+dist
+coverage
+*.log
+.env*
+attached_assets
+screenshots

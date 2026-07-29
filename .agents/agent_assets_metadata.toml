@@ -1,0 +1,224 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "wyPoP1NX-Xh6eAIh_Fj47"
+uri = "file://yukbozor-deploy.tar.gz"
+type = "unspecified"
+title = "yukbozor-deploy.tar.gz (16 MB)"
+
+[[outputs]]
+id = "z63M4T731MtoaF7m9gui5"
+uri = "file://attached_assets/generated_images/yukbozor-icon-512.png"
+type = "image"
+title = "Значок приложения (512×512)"
+
+[[outputs]]
+id = "RKB2_2zpEnq2fMk1cFt9X"
+uri = "file://attached_assets/generated_images/yukbozor-feature-graphic.png"
+type = "image"
+title = "Картинка для описания (Feature Graphic)"
+
+[[outputs]]
+id = "8PYNpk6Hs8v_03oVLBI9L"
+uri = "file://attached_assets/generated_images/yukbozor-icon-v2.png"
+type = "image"
+title = "Значок приложения (512×512) — в стиле og-image"
+
+[[outputs]]
+id = "Fw8dlcMq5MqzwdUrZadST"
+uri = "file://attached_assets/generated_images/yukbozor-feature-v2.png"
+type = "image"
+title = "Картинка для описания — YUK BOZOR синий+красный"
+
+[[outputs]]
+id = "vE1F7RyAUa7fLCQLvHkhq"
+uri = "file://attached_assets/generated_images/yukbozor-feature-v3.png"
+type = "image"
+title = "Картинка для описания — YUK (sinий) BOZOR (красный)"
+
+[[outputs]]
+id = "reL3KaDMMLYjnVqydegCK"
+uri = "file://attached_assets/generated_images/yukbozor-feature-v4.png"
+type = "image"
+title = "Картинка для описания — YUK BOZOR бренд"
+
+[[outputs]]
+id = "-tauWNjPQfDSzUiM6WcUb"
+uri = "file://attached_assets/generated_images/screenshot-phone-1.png"
+type = "image"
+title = "Смартфон 1 — Список заказов (9:16)"
+
+[[outputs]]
+id = "gUFs29BMwkwd4o2wX7EcY"
+uri = "file://attached_assets/generated_images/screenshot-phone-2.png"
+type = "image"
+title = "Смартфон 2 — Создание заказа (9:16)"
+
+[[outputs]]
+id = "dzHAl-CCruhrytrTnNBnR"
+uri = "file://attached_assets/generated_images/screenshot-tablet7-1.png"
+type = "image"
+title = "7-дюймовый планшет 1 — Заказы (3:4)"
+
+[[outputs]]
+id = "CTrXrHJoO7LSDfvEqBahz"
+uri = "file://attached_assets/generated_images/screenshot-tablet7-2.png"
+type = "image"
+title = "7-дюймовый планшет 2 — Детали заказа (3:4)"
+
+[[outputs]]
+id = "KsW5ch7OxwXpoN_RSLOVn"
+uri = "file://attached_assets/generated_images/screenshot-tablet10-1.png"
+type = "image"
+title = "10-дюймовый планшет 1 — Дашборд (4:3)"
+
+[[outputs]]
+id = "SjiNhYZHbY_OXwqy1He5e"
+uri = "file://attached_assets/generated_images/screenshot-tablet10-2.png"
+type = "image"
+title = "10-дюймовый планшет 2 — Профиль (4:3)"
+
+[[outputs]]
+id = "cO2Z0xmm0yHX7bZByhBU_"
+uri = "file://attached_assets/generated_images/screenshots/phone-01-home.png"
+type = "image"
+title = "Phone – Главная страница"
+
+[[outputs]]
+id = "gKUU5EN7feqjDAkadIbc-"
+uri = "file://attached_assets/generated_images/screenshots/phone-02-login.png"
+type = "image"
+title = "Phone – Вход"
+
+[[outputs]]
+id = "ZbI_GcFst_5Bq_CxQbkq2"
+uri = "file://attached_assets/generated_images/screenshots/phone-03-carrier-available-orders.png"
+type = "image"
+title = "Phone – Перевозчик: доступные заказы"
+
+[[outputs]]
+id = "GWz063n_3ZXfh0Y2xLXW8"
+uri = "file://attached_assets/generated_images/screenshots/phone-04-customer-my-orders.png"
+type = "image"
+title = "Phone – Заказчик: мои заказы"
+
+[[outputs]]
+id = "VZfK648-Xpz9Bi4f5V4cx"
+uri = "file://attached_assets/generated_images/screenshots/phone-05-create-order-dialog.png"
+type = "image"
+title = "Phone – Создать заказ"
+
+[[outputs]]
+id = "CKEd6DeSU6IP7RspZbIGE"
+uri = "file://attached_assets/generated_images/screenshots/phone-06-order-expanded.png"
+type = "image"
+title = "Phone – Заказ развёрнут"
+
+[[outputs]]
+id = "jT6CD28a96vAoq5KEf-Mu"
+uri = "file://attached_assets/generated_images/screenshots/phone-07-announcements.png"
+type = "image"
+title = "Phone – Объявления"
+
+[[outputs]]
+id = "S0r423CKTcQr8rI7rzqrD"
+uri = "file://attached_assets/generated_images/screenshots/phone-08-profile.png"
+type = "image"
+title = "Phone – Профиль"
+
+[[outputs]]
+id = "jWbthDV4HNwKoJormfXAr"
+uri = "file://attached_assets/generated_images/screenshots/tablet7-01-home.png"
+type = "image"
+title = "Tablet 7\" – Главная страница"
+
+[[outputs]]
+id = "lPdruvjTdpJ_NzTAp8M48"
+uri = "file://attached_assets/generated_images/screenshots/tablet7-02-login.png"
+type = "image"
+title = "Tablet 7\" – Вход"
+
+[[outputs]]
+id = "Z8qN9b-pgJe7ypQY3R9vK"
+uri = "file://attached_assets/generated_images/screenshots/tablet7-03-carrier-available-orders.png"
+type = "image"
+title = "Tablet 7\" – Перевозчик: доступные заказы"
+
+[[outputs]]
+id = "TmI7mnOSQQFvV4zhSn1hG"
+uri = "file://attached_assets/generated_images/screenshots/tablet7-04-customer-my-orders.png"
+type = "image"
+title = "Tablet 7\" – Заказчик: мои заказы"
+
+[[outputs]]
+id = "f3tW5EWAl4VlGDdDVhsff"
+uri = "file://attached_assets/generated_images/screenshots/tablet7-05-create-order-dialog.png"
+type = "image"
+title = "Tablet 7\" – Создать заказ"
+
+[[outputs]]
+id = "vta384MXjIpjrF4j0brwY"
+uri = "file://attached_assets/generated_images/screenshots/tablet7-06-order-expanded.png"
+type = "image"
+title = "Tablet 7\" – Заказ развёрнут"
+
+[[outputs]]
+id = "UPquhIqQkI582dI5Z2pQi"
+uri = "file://attached_assets/generated_images/screenshots/tablet7-07-announcements.png"
+type = "image"
+title = "Tablet 7\" – Объявления"
+
+[[outputs]]
+id = "S6V0N5Fk2k8WdC4oJrvrd"
+uri = "file://attached_assets/generated_images/screenshots/tablet7-08-profile.png"
+type = "image"
+title = "Tablet 7\" – Профиль"
+
+[[outputs]]
+id = "DyNU8J2YfgdQXmGHgFt8f"
+uri = "file://attached_assets/generated_images/screenshots/tablet10-01-home.png"
+type = "image"
+title = "Tablet 10\" – Главная страница"
+
+[[outputs]]
+id = "MTzYl72BbH8leY8bRbHFg"
+uri = "file://attached_assets/generated_images/screenshots/tablet10-02-login.png"
+type = "image"
+title = "Tablet 10\" – Вход"
+
+[[outputs]]
+id = "kyrLmiwYl7Qk6RIy8tTK3"
+uri = "file://attached_assets/generated_images/screenshots/tablet10-03-carrier-available-orders.png"
+type = "image"
+title = "Tablet 10\" – Перевозчик: доступные заказы"
+
+[[outputs]]
+id = "MznfNrKfIB2kHmIHSUVPs"
+uri = "file://attached_assets/generated_images/screenshots/tablet10-04-customer-my-orders.png"
+type = "image"
+title = "Tablet 10\" – Заказчик: мои заказы"
+
+[[outputs]]
+id = "JzND_ime7d2QGuuKIze1a"
+uri = "file://attached_assets/generated_images/screenshots/tablet10-05-create-order-dialog.png"
+type = "image"
+title = "Tablet 10\" – Создать заказ"
+
+[[outputs]]
+id = "bDrXDW1OUUaASy7Nx6FXp"
+uri = "file://attached_assets/generated_images/screenshots/tablet10-06-order-expanded.png"
+type = "image"
+title = "Tablet 10\" – Заказ развёрнут"
+
+[[outputs]]
+id = "AIPgCWmZ174hqWRiNCx4c"
+uri = "file://attached_assets/generated_images/screenshots/tablet10-07-announcements.png"
+type = "image"
+title = "Tablet 10\" – Объявления"
+
+[[outputs]]
+id = "wgFMh_znIl5a-5d-1PD-A"
+uri = "file://attached_assets/generated_images/screenshots/tablet10-08-profile.png"
+type = "image"
+title = "Tablet 10\" – Профиль"

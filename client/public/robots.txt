@@ -1,0 +1,21 @@
+# Yukbozor.uz Robots.txt
+# https://yukbozor.uz
+
+User-agent: *
+Allow: /
+Allow: /login
+Allow: /register
+Allow: /deals
+
+# Disallow private/dashboard areas
+Disallow: /customer
+Disallow: /carrier
+Disallow: /partner
+Disallow: /admin
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://yukbozor.uz/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

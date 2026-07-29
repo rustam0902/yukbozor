@@ -1,0 +1,61 @@
+modules = ["nodejs-20", "web", "python-3.11", "postgresql-16", "node"]
+run = "npm run dev"
+hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
+
+[nix]
+channel = "stable-24_05"
+packages = ["unzip", "zip", "chromium", "imagemagick"]
+
+[deployment]
+deploymentTarget = "autoscale"
+build = ["npm", "run", "build"]
+run = ["node", "dist/index.js"]
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[[ports]]
+localPort = 8081
+externalPort = 8081
+
+[env]
+PORT = "5000"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+waitForPort = 5000
+
+[agent]
+integrations = ["javascript_database:1.0.0", "javascript_openai_ai_integrations:2.0.0"]
+
+[userenv]
+
+[userenv.shared]
+EIMZO_SERVER_URL = "http://198.163.207.109:8080"
+TELEGRAM_CHANNEL_ID = "@yukbozor_uz"
+APP_URL = "https://yukbozor.uz"
+DIDOX_API_URL = "https://stage.goodsign.biz"
+AI_MODEL_NAME = "deepseek-chat"
+LIVEKIT_URL = "wss://yukbozor-7xquvpw6.livekit.cloud"
+
+[postMerge]
+path = "scripts/post-merge.sh"
+timeoutMs = 20000

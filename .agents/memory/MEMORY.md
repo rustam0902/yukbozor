@@ -1,0 +1,6 @@
+- [DeepSeek model names](deepseek-model-names.md) — "deepseek-chat" is dead; use deepseek-v4-flash or deepseek-v4-pro
+- [Production deploy quirks](prod-deploy-quirks.md) — pm2 delete loses env; always source .env before start; npm needs public registry
+- [OTA update strategy](ota-strategy.md) — must set "platforms":["android","ios"] in app.json; use CI=1 not --non-interactive; run via workflow not bash
+- [EAS OTA publish commands](eas-ota-commands.md) — exact workflow setup + expo-av stub prereqs for OTA publish from Replit
+- [AI Voice Assistant routes](ai-voice-assistant.md) — both AI routes are unauthenticated + IP rate-limited; ready=true requires contactPhone too; hold-to-record UX
+- [EAS build from Replit quirks](eas-build-replit-quirks.md) — three pitfalls when triggering EAS builds from Replit; requires a workflow + lockfile fix

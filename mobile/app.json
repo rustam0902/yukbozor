@@ -1,0 +1,108 @@
+{
+  "expo": {
+    "name": "Yukbozor",
+    "slug": "yukbozor",
+    "version": "1.0.8",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "orientation": "default",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": false,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#2563eb"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/7451932c-660d-4552-94ef-3810191bfc45",
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
+    "runtimeVersion": "1.0.8",
+    "android": {
+      "package": "uz.yukbozor.app",
+      "versionCode": 26,
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.CHANGE_NETWORK_STATE",
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_CONNECT"
+      ],
+      "edgeToEdgeEnabled": true,
+      "googleServicesFile": "./google-services.json",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#2563eb"
+      },
+      "intentFilters": [
+        {
+          "action": "android.intent.action.DIAL",
+          "data": [
+            {
+              "scheme": "tel"
+            }
+          ],
+          "category": [
+            "android.intent.category.DEFAULT"
+          ]
+        }
+      ]
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "uz.yukbozor.app",
+      "buildNumber": "8",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Приложению нужен доступ к микрофону для голосового чата.",
+        "NSCameraUsageDescription": "Приложению нужен доступ к камере."
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "targetSdkVersion": 36,
+            "compileSdkVersion": 36,
+            "useLegacyPackaging": false
+          }
+        }
+      ],
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Приложению нужен доступ к микрофону для голосового создания объявлений."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#2563eb",
+          "sounds": []
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Приложению нужен доступ к фотографиям для прикрепления фото груза.",
+          "cameraPermission": "Приложению нужен доступ к камере для фотографирования груза."
+        }
+      ],
+      "expo-updates"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "7451932c-660d-4552-94ef-3810191bfc45"
+      }
+    }
+  }
+}
