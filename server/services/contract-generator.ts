@@ -11,6 +11,20 @@ export interface ContractData {
   contractDate: Date;
 }
 
+// Security: escape HTML special characters before interpolating any value
+// (user-controlled or otherwise) into the contract HTML. This document is later
+// rendered client-side via dangerouslySetInnerHTML, so unescaped values here
+// would allow stored XSS (e.g. via a display name or company name).
+function esc(value: unknown): string {
+  if (value === null || value === undefined) return '';
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 export function generateContractContent(data: ContractData): string {
   const {
     order,
@@ -62,7 +76,7 @@ export function generateContractContent(data: ContractData): string {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Договор перевозки груза №${contractNumber}</title>
+    <title>Договор перевозки груза №${esc(contractNumber)}</title>
     <style>
         body {
             font-family: 'Times New Roman', serif;
@@ -123,33 +137,33 @@ export function generateContractContent(data: ContractData): string {
 <body>
     <div class="header">
         <h1>ДОГОВОР ПЕРЕВОЗКИ ГРУЗА</h1>
-        <p>№ ${contractNumber} от ${formatDate(contractDate)}</p>
+        <p>№ ${esc(contractNumber)} от ${esc(formatDate(contractDate))}</p>
         <p>г. Ташкент</p>
     </div>
 
     <div class="parties">
         <div class="party">
             <div class="party-title">Заказчик (Грузоотправитель):</div>
-            <p><strong>${customerName}</strong></p>
-            ${customer.userType !== 'individual' ? `<p>ИНН: ${customerProfile?.inn || 'н/у'}</p>` : ''}
+            <p><strong>${esc(customerName)}</strong></p>
+            ${customer.userType !== 'individual' ? `<p>ИНН: ${esc(customerProfile?.inn || 'н/у')}</p>` : ''}
             ${customer.userType === 'individual' && customerProfile?.passportSeries ? 
-              `<p>Паспорт: ${customerProfile.passportSeries}${customerProfile.passportNumber}</p>` : ''}
-            <p>Телефон: ${customer.phone}</p>
-            ${customer.email ? `<p>Email: ${customer.email}</p>` : ''}
-            ${customerProfile?.bankAccount ? `<p>Р/с: ${customerProfile.bankAccount}</p>` : ''}
-            ${customerProfile?.bankName ? `<p>Банк: ${customerProfile.bankName}</p>` : ''}
+              `<p>Паспорт: ${esc(customerProfile.passportSeries)}${esc(customerProfile.passportNumber)}</p>` : ''}
+            <p>Телефон: ${esc(customer.phone)}</p>
+            ${customer.email ? `<p>Email: ${esc(customer.email)}</p>` : ''}
+            ${customerProfile?.bankAccount ? `<p>Р/с: ${esc(customerProfile.bankAccount)}</p>` : ''}
+            ${customerProfile?.bankName ? `<p>Банк: ${esc(customerProfile.bankName)}</p>` : ''}
         </div>
 
         <div class="party">
             <div class="party-title">Перевозчик (Грузоперевозчик):</div>
-            <p><strong>${carrierName}</strong></p>
-            ${carrier.userType !== 'individual' ? `<p>ИНН: ${carrierProfile?.inn || 'н/у'}</p>` : ''}
+            <p><strong>${esc(carrierName)}</strong></p>
+            ${carrier.userType !== 'individual' ? `<p>ИНН: ${esc(carrierProfile?.inn || 'н/у')}</p>` : ''}
             ${carrier.userType === 'individual' && carrierProfile?.passportSeries ? 
-              `<p>Паспорт: ${carrierProfile.passportSeries}${carrierProfile.passportNumber}</p>` : ''}
-            <p>Телефон: ${carrier.phone}</p>
-            ${carrier.email ? `<p>Email: ${carrier.email}</p>` : ''}
-            ${carrierProfile?.bankAccount ? `<p>Р/с: ${carrierProfile.bankAccount}</p>` : ''}
-            ${carrierProfile?.bankName ? `<p>Банк: ${carrierProfile.bankName}</p>` : ''}
+              `<p>Паспорт: ${esc(carrierProfile.passportSeries)}${esc(carrierProfile.passportNumber)}</p>` : ''}
+            <p>Телефон: ${esc(carrier.phone)}</p>
+            ${carrier.email ? `<p>Email: ${esc(carrier.email)}</p>` : ''}
+            ${carrierProfile?.bankAccount ? `<p>Р/с: ${esc(carrierProfile.bankAccount)}</p>` : ''}
+            ${carrierProfile?.bankName ? `<p>Банк: ${esc(carrierProfile.bankName)}</p>` : ''}
         </div>
     </div>
 
@@ -158,40 +172,40 @@ export function generateContractContent(data: ContractData): string {
     <table>
         <tr>
             <td><strong>Пункт отправления:</strong></td>
-            <td>${order.originRegion}, ${order.originDistrict}</td>
+            <td>${esc(order.originRegion)}, ${esc(order.originDistrict)}</td>
         </tr>
         <tr>
             <td><strong>Пункт назначения:</strong></td>
-            <td>${order.destinationRegion}, ${order.destinationDistrict}</td>
+            <td>${esc(order.destinationRegion)}, ${esc(order.destinationDistrict)}</td>
         </tr>
         <tr>
             <td><strong>Наименование груза:</strong></td>
-            <td>${order.title}</td>
+            <td>${esc(order.title)}</td>
         </tr>
         <tr>
             <td><strong>Вес груза:</strong></td>
-            <td>${order.weightTons} тонн</td>
+            <td>${esc(order.weightTons)} тонн</td>
         </tr>
         <tr>
             <td><strong>Тип транспорта:</strong></td>
-            <td>${getTransportTypeName(order.transportType)}</td>
+            <td>${esc(getTransportTypeName(order.transportType))}</td>
         </tr>
         ${order.loadingTime ? `
         <tr>
             <td><strong>Время погрузки:</strong></td>
-            <td>${order.loadingTime}</td>
+            <td>${esc(order.loadingTime)}</td>
         </tr>
         ` : ''}
         ${order.loadDate ? `
         <tr>
             <td><strong>Дата погрузки:</strong></td>
-            <td>${formatDate(new Date(order.loadDate))}</td>
+            <td>${esc(formatDate(new Date(order.loadDate)))}</td>
         </tr>
         ` : ''}
     </table>
 
     <h2>2. СТОИМОСТЬ УСЛУГ И ПОРЯДОК РАСЧЕТОВ</h2>
-    <p>2.1. Стоимость услуг по перевозке груза составляет: <strong>${order.priceWithVat.toLocaleString('ru-RU')} сум</strong> (${customerProfile?.ndsPayer ? 'включая НДС' : 'без НДС'}).</p>
+    <p>2.1. Стоимость услуг по перевозке груза составляет: <strong>${esc(order.priceWithVat.toLocaleString('ru-RU'))} сум</strong> (${customerProfile?.ndsPayer ? 'включая НДС' : 'без НДС'}).</p>
     <p>2.2. Форма оплаты: Банковский перевод.</p>
     <p>2.3. Оплата производится после успешного завершения перевозки и подписания акта приема-передачи груза.</p>
 
@@ -230,7 +244,7 @@ export function generateContractContent(data: ContractData): string {
 
     ${order.notes ? `
     <h2>8. ДОПОЛНИТЕЛЬНЫЕ УСЛОВИЯ</h2>
-    <p>${order.notes}</p>
+    <p>${esc(order.notes)}</p>
     ` : ''}
 
     <h2>${order.notes ? '9' : '8'}. ПОРЯДОК ПОДПИСАНИЯ ДОГОВОРА</h2>
@@ -250,27 +264,27 @@ export function generateContractContent(data: ContractData): string {
         ${customer.userType !== 'individual' && customerProfile?.eimzoCertSerial ? `
         <tr>
             <td><strong>Серийный номер сертификата:</strong></td>
-            <td>${customerProfile.eimzoCertSerial}</td>
+            <td>${esc(customerProfile.eimzoCertSerial)}</td>
         </tr>
         <tr>
             <td><strong>Владелец сертификата (CN):</strong></td>
-            <td>${customerProfile.eimzoCertCn || 'н/у'}</td>
+            <td>${esc(customerProfile.eimzoCertCn || 'н/у')}</td>
         </tr>
         <tr>
             <td><strong>Организация (O):</strong></td>
-            <td>${customerProfile.eimzoCertO || 'н/у'}</td>
+            <td>${esc(customerProfile.eimzoCertO || 'н/у')}</td>
         </tr>
         <tr>
             <td><strong>ИНН/ПИНФЛ:</strong></td>
-            <td>${customerProfile.eimzoCertTin || customerProfile.eimzoCertPinfl || 'н/у'}</td>
+            <td>${esc(customerProfile.eimzoCertTin || customerProfile.eimzoCertPinfl || 'н/у')}</td>
         </tr>
         <tr>
             <td><strong>Срок действия:</strong></td>
-            <td>${customerProfile.eimzoCertValidFrom ? formatDate(new Date(customerProfile.eimzoCertValidFrom)) : '?'} — ${customerProfile.eimzoCertValidTo ? formatDate(new Date(customerProfile.eimzoCertValidTo)) : '?'}</td>
+            <td>${customerProfile.eimzoCertValidFrom ? esc(formatDate(new Date(customerProfile.eimzoCertValidFrom))) : '?'} — ${customerProfile.eimzoCertValidTo ? esc(formatDate(new Date(customerProfile.eimzoCertValidTo))) : '?'}</td>
         </tr>
         <tr>
             <td><strong>Дата принятия оферты:</strong></td>
-            <td>${customerProfile.offerAcceptedAt ? formatDate(new Date(customerProfile.offerAcceptedAt)) : 'н/у'}</td>
+            <td>${customerProfile.offerAcceptedAt ? esc(formatDate(new Date(customerProfile.offerAcceptedAt))) : 'н/у'}</td>
         </tr>
         ` : `
         <tr>
@@ -279,15 +293,15 @@ export function generateContractContent(data: ContractData): string {
         </tr>
         <tr>
             <td><strong>ПИНФЛ:</strong></td>
-            <td>${customerProfile?.pinfl || 'н/у'}</td>
+            <td>${esc(customerProfile?.pinfl || 'н/у')}</td>
         </tr>
         <tr>
             <td><strong>Паспорт:</strong></td>
-            <td>${customerProfile?.passportSeries ? customerProfile.passportSeries + customerProfile.passportNumber : 'н/у'}</td>
+            <td>${customerProfile?.passportSeries ? esc(customerProfile.passportSeries + customerProfile.passportNumber) : 'н/у'}</td>
         </tr>
         <tr>
             <td><strong>Дата принятия оферты:</strong></td>
-            <td>${customerProfile?.offerAcceptedAt ? formatDate(new Date(customerProfile.offerAcceptedAt)) : 'н/у'}</td>
+            <td>${customerProfile?.offerAcceptedAt ? esc(formatDate(new Date(customerProfile.offerAcceptedAt))) : 'н/у'}</td>
         </tr>
         `}
     </table>
@@ -299,27 +313,27 @@ export function generateContractContent(data: ContractData): string {
         ${carrier.userType !== 'individual' && carrierProfile?.eimzoCertSerial ? `
         <tr>
             <td><strong>Серийный номер сертификата:</strong></td>
-            <td>${carrierProfile.eimzoCertSerial}</td>
+            <td>${esc(carrierProfile.eimzoCertSerial)}</td>
         </tr>
         <tr>
             <td><strong>Владелец сертификата (CN):</strong></td>
-            <td>${carrierProfile.eimzoCertCn || 'н/у'}</td>
+            <td>${esc(carrierProfile.eimzoCertCn || 'н/у')}</td>
         </tr>
         <tr>
             <td><strong>Организация (O):</strong></td>
-            <td>${carrierProfile.eimzoCertO || 'н/у'}</td>
+            <td>${esc(carrierProfile.eimzoCertO || 'н/у')}</td>
         </tr>
         <tr>
             <td><strong>ИНН/ПИНФЛ:</strong></td>
-            <td>${carrierProfile.eimzoCertTin || carrierProfile.eimzoCertPinfl || 'н/у'}</td>
+            <td>${esc(carrierProfile.eimzoCertTin || carrierProfile.eimzoCertPinfl || 'н/у')}</td>
         </tr>
         <tr>
             <td><strong>Срок действия:</strong></td>
-            <td>${carrierProfile.eimzoCertValidFrom ? formatDate(new Date(carrierProfile.eimzoCertValidFrom)) : '?'} — ${carrierProfile.eimzoCertValidTo ? formatDate(new Date(carrierProfile.eimzoCertValidTo)) : '?'}</td>
+            <td>${carrierProfile.eimzoCertValidFrom ? esc(formatDate(new Date(carrierProfile.eimzoCertValidFrom))) : '?'} — ${carrierProfile.eimzoCertValidTo ? esc(formatDate(new Date(carrierProfile.eimzoCertValidTo))) : '?'}</td>
         </tr>
         <tr>
             <td><strong>Дата принятия оферты:</strong></td>
-            <td>${carrierProfile.offerAcceptedAt ? formatDate(new Date(carrierProfile.offerAcceptedAt)) : 'н/у'}</td>
+            <td>${carrierProfile.offerAcceptedAt ? esc(formatDate(new Date(carrierProfile.offerAcceptedAt))) : 'н/у'}</td>
         </tr>
         ` : `
         <tr>
@@ -328,15 +342,15 @@ export function generateContractContent(data: ContractData): string {
         </tr>
         <tr>
             <td><strong>ПИНФЛ:</strong></td>
-            <td>${carrierProfile?.pinfl || 'н/у'}</td>
+            <td>${esc(carrierProfile?.pinfl || 'н/у')}</td>
         </tr>
         <tr>
             <td><strong>Паспорт:</strong></td>
-            <td>${carrierProfile?.passportSeries ? carrierProfile.passportSeries + carrierProfile.passportNumber : 'н/у'}</td>
+            <td>${carrierProfile?.passportSeries ? esc(carrierProfile.passportSeries + carrierProfile.passportNumber) : 'н/у'}</td>
         </tr>
         <tr>
             <td><strong>Дата принятия оферты:</strong></td>
-            <td>${carrierProfile?.offerAcceptedAt ? formatDate(new Date(carrierProfile.offerAcceptedAt)) : 'н/у'}</td>
+            <td>${carrierProfile?.offerAcceptedAt ? esc(formatDate(new Date(carrierProfile.offerAcceptedAt))) : 'н/у'}</td>
         </tr>
         `}
     </table>
@@ -344,18 +358,18 @@ export function generateContractContent(data: ContractData): string {
     <div class="signatures">
         <div class="signature-block">
             <p><strong>Заказчик:</strong></p>
-            <p>${customerName}</p>
+            <p>${esc(customerName)}</p>
             ${customer.userType !== 'individual' && customerProfile?.eimzoCertCn ? 
-              `<p style="font-size: 12px; color: #666;">Подписано ЭЦП: ${customerProfile.eimzoCertCn}</p>` : 
-              `<p style="font-size: 12px; color: #666;">Подтверждено при регистрации (SMS): ${customerProfile?.offerAcceptedAt ? formatDate(new Date(customerProfile.offerAcceptedAt)) : 'н/у'}</p>`
+              `<p style="font-size: 12px; color: #666;">Подписано ЭЦП: ${esc(customerProfile.eimzoCertCn)}</p>` : 
+              `<p style="font-size: 12px; color: #666;">Подтверждено при регистрации (SMS): ${customerProfile?.offerAcceptedAt ? esc(formatDate(new Date(customerProfile.offerAcceptedAt))) : 'н/у'}</p>`
             }
         </div>
         <div class="signature-block">
             <p><strong>Перевозчик:</strong></p>
-            <p>${carrierName}</p>
+            <p>${esc(carrierName)}</p>
             ${carrier.userType !== 'individual' && carrierProfile?.eimzoCertCn ? 
-              `<p style="font-size: 12px; color: #666;">Подписано ЭЦП: ${carrierProfile.eimzoCertCn}</p>` : 
-              `<p style="font-size: 12px; color: #666;">Подтверждено при регистрации (SMS): ${carrierProfile?.offerAcceptedAt ? formatDate(new Date(carrierProfile.offerAcceptedAt)) : 'н/у'}</p>`
+              `<p style="font-size: 12px; color: #666;">Подписано ЭЦП: ${esc(carrierProfile.eimzoCertCn)}</p>` : 
+              `<p style="font-size: 12px; color: #666;">Подтверждено при регистрации (SMS): ${carrierProfile?.offerAcceptedAt ? esc(formatDate(new Date(carrierProfile.offerAcceptedAt))) : 'н/у'}</p>`
             }
         </div>
     </div>
